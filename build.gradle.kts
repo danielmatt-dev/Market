@@ -1,4 +1,3 @@
-import java.util.regex.Pattern.compile
 
 plugins {
 	java
@@ -8,7 +7,7 @@ plugins {
 }
 
 group = "com.platzi"
-version = "1.0"
+version = "1.2"
 
 repositories {
 	mavenCentral()
@@ -40,3 +39,5 @@ tasks.withType<Test> {
 kotlin {
 	jvmToolchain(17)
 }
+
+// java -jar ubicacion/archivo

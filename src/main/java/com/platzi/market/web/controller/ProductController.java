@@ -5,7 +5,6 @@ import com.platzi.market.domain.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +27,8 @@ public class ProductController {
 
     @GetMapping("/{id_producto}")
     @Operation(summary = "Search product por Id")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "PRODUCT NOT FOUND")
-    })
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "PRODUCT NOT FOUND")
 
     public ResponseEntity<Product> getProduct(@Parameter(description = "Id of product", required = true, example = "7")
                                                   @PathVariable("id_producto") int productId){
@@ -53,11 +50,11 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity delete(@PathVariable("id") int productId){
+    public ResponseEntity<Product> delete(@PathVariable("id") int productId){
         if (productService.delete(productId)){
             return new ResponseEntity<>(HttpStatus.OK);
         }
-        return new ResponseEntity(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }
