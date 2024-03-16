@@ -5,7 +5,7 @@ FROM gradle:7.3.0-jdk11 AS build
 WORKDIR /app
 
 # Copiar archivos de tu proyecto al directorio de trabajo
-COPY . /app
+COPY src/main /app
 
 # Ejecutar Gradle para construir el proyecto
 RUN gradle clean build
