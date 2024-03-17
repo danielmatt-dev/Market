@@ -1,5 +1,5 @@
 # Usar una imagen base con JDK 8 y Gradle
-FROM gradle:7.3.0-jdk11 AS build
+FROM gradle:8.5 AS build
 
 # Establecer un directorio de trabajo
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN gradle clean build
 FROM openjdk:11-jre-slim-buster
 
 # Exponer el puerto que utilizará la aplicación
-EXPOSE 8080
+EXPOSE 8090
 
 # Copiar el archivo JAR construido desde la etapa anterior
 COPY --from=build /app/build/libs/platzi-market-1.2.jar /app/platzi-market-1.2.jar
